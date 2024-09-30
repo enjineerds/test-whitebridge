@@ -62,7 +62,6 @@ export class FileUploadComponent {
 
       const reader = new FileReader();
       reader.onload = (event) => {
-        console.debug(event.target);
         this.imagePreview = event.target?.result as string;
         this.ref.markForCheck();
 

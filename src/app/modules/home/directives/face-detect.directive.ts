@@ -111,7 +111,6 @@ export class FaceDetectDirective implements AfterViewInit, OnInit, OnDestroy {
 
     const { height, width } = this.host.nativeElement.getBoundingClientRect();
     const { rectangle, image } = data;
-    console.debug('CONTAINER ' + 'HEIGHT: ' + height + ' WIDTH: ' + width);
 
     if (!rectangle) return null;
 
