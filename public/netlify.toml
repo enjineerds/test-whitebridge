@@ -1,4 +1,5 @@
-[[headers]]
-  for = "/*" # you can configure the correct paths here
-  [headers.values]
-    access-control-allow-origin = "*" # see a list of allowed values here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
+[[redirects]]
+  force = true
+  from = "/api/*"
+  status = 200
+  to = "https://face-2snbrq2o3a-ue.a.run.app/detect"
