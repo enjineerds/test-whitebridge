@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, isDevMode } from '@angular/core';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,9 @@ export class FaceDetectionService {
   private readonly http = inject(HttpClient);
 
   detect(base64: string) {
-    const url = 'api/detect';
+    const url = isDevMode()
+      ? 'api/detect'
+      : 'https://face-2snbrq2o3a-ue.a.run.app/detect';
     const params = { sourceUrl: base64 };
     return this.http.post(url, params).pipe(
       map((data: any) => {
