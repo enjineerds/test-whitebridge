@@ -22,7 +22,20 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    // Application Path Alias
+    "baseUrl": "src",
+    "paths": {
+      "@store/*": ["app/store/*"],
+      "@store/actions": ["app/store/actions/index.ts"],
+      "@store/reducers": ["app/store/reducers/index.ts"],
+      "@store/effects": ["app/store/effects/index.ts"],
+      "@store/selectors": ["app/store/effects/index.ts"],
+      "@home/features": ["app/modules/home/index.ts"],
+      "@home/data-access": ["app/modules/home/data-access/index.ts"],
+      "@home/directives": ["app/modules/home/directives/index.ts"],
+      "@history": ["app/modules/history/index.ts"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
