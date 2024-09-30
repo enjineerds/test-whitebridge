@@ -24,4 +24,8 @@
         </button>
     </div>
 </div>
-<app-toast [message]="error$ | async" status="danger" (handleDismiss)="resetError()" />
+
+@let error = error$ | async;
+@if(error) {
+    <app-toast [message]="error" status="danger" (handleDismiss)="resetError()" />
+}
