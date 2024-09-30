@@ -1,0 +1,27 @@
+@let isLoading = loading$ | async;
+@let selectedImage = selectedImage$ | async;
+<div class="vstack gap-5 gap-sm-2">
+    <div class="upload">
+        <app-file-upload [disabled]="isLoading || false" (handleChange)="handleFileChange($event)" (handleError)="setError($event)"/>
+    </div>
+    <div class="preview">
+        <h5>Result</h5>
+        @let data = result$ | async;
+        <div class="border rounded-4 image-preview position-relative h-sm-50" [ngClass]="{ 'gradient-border': isLoading }" [appFaceDetect]="data">
+            @let image = data ? data.image.base64 : selectedImage?.base64;
+            @if(image) {
+                <img [src]="image" class="w-100 h-100 object-fit-cover rounded-4" [ngClass]="{ 'p-1': isLoading }"  alt="" />
+            }
+        </div>
+        <button type="button" class="btn btn-primary rounded-pill my-2 px-4 py-3 w-100" [disabled]="isLoading"
+            (click)="analyze(selectedImage)">
+            @if(isLoading) {
+            <span class="spinner-grow spinner-grow-sm me-1" aria-hidden="true"></span>
+            <span>Processing...</span>
+            } @else {
+            <span>Analyze</span>
+            }
+        </button>
+    </div>
+</div>
+<app-toast [message]="error$ | async" status="danger" (handleDismiss)="resetError()" />

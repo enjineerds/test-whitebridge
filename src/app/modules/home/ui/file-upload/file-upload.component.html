@@ -1,0 +1,7 @@
+<div class="file-upload border rounded-4  text-center d-flex flex-column justify-content-center align-items-center" [ngClass]="{ 'opacity-50': disabled }" (click)="inputRef.click()" (drop)="onFileDrop($event)" (dragover)="onDragOver($event)">
+    <i class="bi bi-upload"></i>
+    <h2 class="fs-5 fw-semibold">Drag & drop file or <span>browse files</span></h2>
+    <p class="fs-6 fw-light text-body-secondary">JPG, PNG - Max file size 5MB</p>
+</div>
+<input [disabled]="disabled" type="file" hidden accept="image/*" #inputRef (change)="onFileChange($event)" />
+<img class="image-preview img-fluid object-fit-fill visually-hidden" #image [src]="imagePreview" alt=""  />
