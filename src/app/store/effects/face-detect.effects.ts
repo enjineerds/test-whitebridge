@@ -29,9 +29,11 @@ export class FaceDetectEffects {
             let errorMessage =
               typeof error === 'string' ? error : error.message;
 
-            if (error instanceof HttpErrorResponse && error.status === 500) {
+            if (error instanceof HttpErrorResponse) {
               errorMessage =
-                "We're unable to process your request at the moment.";
+                error.status === 500
+                  ? "We're unable to process your request at the moment."
+                  : "Something went wrong. We're fixing it now";
             }
 
             return of(FaceDetectApiActions.handleFailure({ errorMessage }));
