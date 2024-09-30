@@ -1,0 +1,17 @@
+<section class="history mb-sm-4">
+    <h5>Past Results</h5>
+    @let results = pastResults$ | async;
+
+    <p class="fs-6 fw-light text-body-secondary mb-0">
+        <span [ngPlural]="results?.length || 0">
+            <ng-template ngPluralCase="=0">there is nothing here</ng-template>
+            <ng-template ngPluralCase="=1">1 item</ng-template>
+            <ng-template ngPluralCase="other">{{ results?.length || 0 }} items</ng-template>
+        </span>
+    </p>
+    @for (item of results; track item.image.name) {
+        <div class="history-item d-inline-block">
+            <img class="w-100 h-100 object-fit-cover img-thumbnail" [src]="item.image.base64" alt="" (click)="selectPastResult(item)">
+        </div>
+    }
+</section>
